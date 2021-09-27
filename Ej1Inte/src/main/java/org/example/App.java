@@ -13,7 +13,7 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
-        Ejercicio4();
+        Ejercicio6();
     }
 
     private static void Ejercicio1(){
@@ -80,5 +80,20 @@ public class App
         }
 
     }
+
+    private static void Ejercicio5(){
+
+        coche objCoche= new coche(40, 4);
+        System.out.println("Mi coche va a "+objCoche.getVelocidad()
+        +" kms/hora y tiene "+objCoche.getNumRuedas()+" ruedas");
+    }
+
+    private static void Ejercicio6(){
+
+        Volador objVolador = new Gaviota();
+        objVolador.volar();
+    }
+
+
 
 }
