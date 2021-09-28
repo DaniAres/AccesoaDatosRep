@@ -13,7 +13,7 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
-        Ejercicio6();
+        Ejercicio3();
     }
 
     private static void Ejercicio1(){
