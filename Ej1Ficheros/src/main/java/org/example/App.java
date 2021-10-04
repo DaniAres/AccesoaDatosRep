@@ -11,7 +11,7 @@ public class App
     public static void main( String[] args )
     {
         //System.out.println( "Hello World!" );
-        Ejercicio2();
+        Ejercicio3();
     }
 
     private static void Ejercicio1(){
@@ -137,6 +137,8 @@ public class App
             )
 
             {
+                //leemos y escribimos byte a byte
+
                 int len = in.read();
 
                 while (len != -1) {
@@ -162,7 +164,6 @@ public class App
                 }
 
             }catch(IOException e){
-
             }
 
         }else{
@@ -170,16 +171,41 @@ public class App
         }
 
 
-
-
     }
 
 
+    private static void Ejercicio3(){
+
+        File directorio2= new File("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio2\\fichero1.txt");
+        FileInputStream in1 = null;
+        try(FileInputStream in=new FileInputStream("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio2\\fichero1.txt")) {
+
+            int valor = in.read();
+            String decimales = "";
+            String hexadecimales = "";
+            String salChar= "";
 
 
+            while (valor != -1) {
+                decimales = decimales + valor + "-";
 
+                String hexadecimal = Integer.toHexString(valor);
+                hexadecimales = hexadecimales + hexadecimal + "-";
+                salChar= salChar + (char) valor+ "-";
+                valor = in.read();
+            }
 
+            System.out.println(decimales);
+            System.out.println(hexadecimales);
+            System.out.println(salChar);
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 
