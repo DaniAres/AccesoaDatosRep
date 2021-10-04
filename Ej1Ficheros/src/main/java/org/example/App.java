@@ -1,6 +1,6 @@
 package org.example;
 
-import java.io.File;
+import java.io.*;
 
 /**
  * Hello world!
@@ -11,7 +11,7 @@ public class App
     public static void main( String[] args )
     {
         //System.out.println( "Hello World!" );
-        Ejercicio1();
+        Ejercicio2();
     }
 
     private static void Ejercicio1(){
@@ -117,5 +117,71 @@ public class App
         }
 
     }
+
+
+    private static void Ejercicio2(){
+
+        //Creamos los file con la ruta de origen y de destino
+
+        File directorio1= new File("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio1\\fichero1.txt");
+        File directorio2= new File("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio1\\fichero2.txt");
+
+        if(directorio1.exists()){
+
+            System.out.println("EL C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio1\\fichero1.txt ya existe");
+
+            //leemos de uno y escrbimos a otro
+            try(
+                    InputStream in = new FileInputStream(directorio1);
+                    OutputStream out = new FileOutputStream(directorio2);
+            )
+
+            {
+                int len = in.read();
+
+                while (len != -1) {
+                    out.write(len);
+                    //lea el siguiente carácter
+                    len=in.read();
+                }
+
+                in.close();
+                out.close();
+            } catch (IOException ioe){
+                ioe.printStackTrace();
+            }
+
+            //try pa que lea por consola lo escrito a machete en el fichero1.txt
+
+            try(FileInputStream fis=new FileInputStream("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio1\\fichero1.txt")){
+
+                int valor=fis.read();
+                while(valor!=-1){
+                    System.out.print((char)valor);
+                    valor=fis.read();
+                }
+
+            }catch(IOException e){
+
+            }
+
+        }else{
+            System.out.println("El C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio1\\fichero1.txt no existe");
+        }
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 }
