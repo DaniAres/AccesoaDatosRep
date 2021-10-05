@@ -11,7 +11,7 @@ public class App
     public static void main( String[] args )
     {
         //System.out.println( "Hello World!" );
-        Ejercicio3();
+        Ejercicio5();
     }
 
     private static void Ejercicio1(){
@@ -204,6 +204,80 @@ public class App
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private static void Ejercicio4(){
+
+        FileInputStream in = null;
+
+        try {
+            in = new FileInputStream("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\notas.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        File archivoNotas = new File("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\notas.txt");
+        FileReader fr = null;
+        try {
+            fr = new FileReader(archivoNotas);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedReader br = null;
+        br = new BufferedReader(fr);
+
+        String almacenNotas = "";
+
+        try {
+            almacenNotas = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String notas = "";
+
+        while (almacenNotas != null) {
+            notas = notas + almacenNotas;
+
+            try {
+                almacenNotas = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(notas);
+
+        //Calcular nota media
+
+        String []notas2 = notas.split("[|]");
+        double media= 0.0;
+
+        for(String nota:notas2){
+            media += Double.parseDouble(nota);
+        }
+        media = media/notas2.length;
+        System.out.println("El resultado del fichero del ejemplo sería "+media);
+
+    }
+
+    private static void Ejercicio5(){
+
+         FileInputStream filein= null;
+         InputStreamReader inreader= null;
+         OutputStreamWriter outwriter= null;
+         FileOutputStream fileout = null;
+
+         try {
+             filein= new FileInputStream("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio2\\fichero1.txt");
+              inreader= new InputStreamReader(filein);
+
+              fileout = new FileOutputStream("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio2\\salidacod.txt");
+             outwriter= new OutputStreamWriter(fileout);
+
+         } catch (FileNotFoundException e) {
+             e.printStackTrace();
+         }
 
     }
 
