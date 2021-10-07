@@ -1,6 +1,8 @@
 package org.example;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 /**
  * Hello world!
@@ -11,7 +13,7 @@ public class App
     public static void main( String[] args )
     {
         //System.out.println( "Hello World!" );
-        Ejercicio5();
+        Ejercicio6();
     }
 
     private static void Ejercicio1(){
@@ -270,17 +272,75 @@ public class App
 
          try {
              filein= new FileInputStream("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio2\\fichero1.txt");
-              inreader= new InputStreamReader(filein);
+              inreader= new InputStreamReader(filein, StandardCharsets.UTF_8);
 
               fileout = new FileOutputStream("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\Directorio2\\salidacod.txt");
-             outwriter= new OutputStreamWriter(fileout);
+             outwriter= new OutputStreamWriter(fileout, StandardCharsets.ISO_8859_1);
+
+
+             int caracterdecimal = inreader.read();
+
+             while (caracterdecimal != -1) {
+                 char caracter = (char) caracterdecimal;
+                 System.out.println(caracter);
+                 outwriter.write(caracter);
+                 caracterdecimal=inreader.read();
+             }
+             inreader.close();
+             outwriter.close();
+             filein.close();
+             fileout.close();
+
 
          } catch (FileNotFoundException e) {
              e.printStackTrace();
+         } catch (IOException e2) {
+             e2.printStackTrace();
          }
 
     }
 
+    private static void Ejercicio6(){
+
+        Alumno alumno1 = new Alumno("Alex", 21, 7);
+        Alumno alumno2 = new Alumno("Dani", 22, 8);
+        Alumno alumno3 = new Alumno("Pepe", 18, 6);
+
+        ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
+
+        listaAlumnos.add(alumno1);
+        listaAlumnos.add(alumno2);
+        listaAlumnos.add(alumno3);
+
+
+            RandomAccessFile raf = null;
+
+            ////RandomAccessFile escritura
+            try{
+                raf = new RandomAccessFile("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\Ej1Ficheros\\fichero3.txt", "rw");
+                for(Alumno obj:listaAlumnos){
+                    raf.writeChars(obj.getNombre());
+                    raf.writeInt(obj.getEdad());
+                    raf.writeDouble(obj.getnotaMedia());
+                }
+                //RandomAccessFile lectura
+                raf.seek(2);
+                byte [] bytes = new byte[50];
+                raf.read(bytes);
+
+                System.out.println(new String(bytes));
+
+                raf.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+    }
 
 
 
