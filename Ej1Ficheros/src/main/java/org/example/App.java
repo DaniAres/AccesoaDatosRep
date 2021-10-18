@@ -13,7 +13,7 @@ public class App
     public static void main( String[] args )
     {
         //System.out.println( "Hello World!" );
-        Ejercicio6();
+        Ejercicio7();
     }
 
     private static void Ejercicio1(){
@@ -342,6 +342,9 @@ public class App
 
     }
 
-
+    private static void Ejercicio7(){
+        PersonaMapping.escribirPersona();
+        PersonaMapping.leerPersona();
+    }
 
 }
