@@ -14,11 +14,15 @@ public class Mascota {
         this.genero = genero;
     }
 
+    public Mascota() {
+
+    }
+
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nobre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -33,7 +37,6 @@ public class Mascota {
     public String getEdad() {
         return edad;
     }
-
     public void setEdad(String edad) {
         this.edad = edad;
     }

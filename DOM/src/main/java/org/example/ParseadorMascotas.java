@@ -50,52 +50,79 @@ public class ParseadorMascotas {
             }
         }
         for(Mascota mascota:listaMascotas){
-            System.out.println(mascota.getNobre()+"\t"+ mascota.getTipo()+"\t"+ mascota.getEdad()+"\t"+ mascota.getGenero());
+            System.out.println(mascota.getNombre()+"\t"+ mascota.getTipo()+"\t"+ mascota.getEdad()+"\t"+ mascota.getGenero());
 
         }
     }
     public static void escrituraDom() throws ParserConfigurationException, IOException, SAXException, TransformerException {
 
-        DocumentBuilderFactory factory= DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = factory.newDocumentBuilder();
-        Document doc = dBuilder.newDocument();
-
         ArrayList<Mascota> listaMascotas = new ArrayList<>();
 
-        Element eRaiz =  doc.createElement("mascotas");
-        doc.appendChild(eRaiz);
-        //doc.appendChild(
+        listaMascotas.add(new Mascota("Rex", "Perro", "5", "Macho"));
+        listaMascotas.add(new Mascota("Luna", "Gato", "10", "Hembra"));
+        listaMascotas.add(new Mascota("Churchill", "Gato", "2", null));
 
-        for(Mascota obj : listaMascotas) {
-            Element eMascota = doc.createElement("mascota");
-            eRaiz.appendChild(eMascota);
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = factory.newDocumentBuilder();
+            Document doc = dBuilder.newDocument();
 
-            Attr attr = doc.createAttribute("nombre");
-            attr.setValue(obj.getNombre());
-            eMascota.setAttributeNode(attr);
 
-            //Definimos
-            if (.getTipo() != null){
-                Element eTipo = doc.createElement("tipo");
-                eTipo.appendChild(doc.createTextNode(.getTipo()));
-                eMascota.appendChild(eTipo);
+            Element eRaiz = doc.createElement("mascotas");
+            doc.appendChild(eRaiz);
+            //doc.appendChild(
+
+                //Recorremos las mascotas
+            for (Mascota obj : listaMascotas) {
+                Element eMascota = doc.createElement("mascota");
+                eRaiz.appendChild(eMascota);
+
+                Attr attr = doc.createAttribute("Nombre");
+                attr.setValue(obj.getNombre());
+                eMascota.setAttributeNode(attr);
+
+                //Definimos
+                if (obj.getTipo() != null) {
+                    Element eTipo = doc.createElement("tipo");
+                    eTipo.appendChild(doc.createTextNode(obj.getTipo()));
+                    eMascota.appendChild(eTipo);
+                }
+                if (obj.getEdad() != null) {
+                    Element eEdad = doc.createElement("edad");
+                    eEdad.appendChild(doc.createTextNode(obj.getEdad()));
+                    eMascota.appendChild(eEdad);
+                }
+                if (obj.getGenero() != null) {
+                    Element eGenero = doc.createElement("genero");
+                    eGenero.appendChild(doc.createTextNode(obj.getGenero()));
+                    eMascota.appendChild(eGenero);
+                }
             }
+
+            //Clases necesarias para finalizar la creación del archivo XML
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+
+            //Para poner pretty
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}index-amount", "2");
+
+            //Origen del DOM
+            DOMSource source = new DOMSource(doc);
+            //Fichero en el cual escribimos los resultados
+            StreamResult result = new StreamResult(new File("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\DOM\\mascotas2.xml"));
+            //Traslado el XML generado al fichero
+            transformer.transform(source, result);
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (DOMException e) {
+            e.printStackTrace();
+        } catch (TransformerFactoryConfigurationError transformerFactoryConfigurationError) {
+            transformerFactoryConfigurationError.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
         }
-
-        //Clases necesarias para finalizar la creación del archivo XML
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-
-        //Para poner pretty
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty("{http://xml.apache.org/xslt}index-amount","2");
-
-        //Origen del DOM
-        DOMSource source = new DOMSource(doc);
-        //Fichero en el cual escribimos los resultados
-        StreamResult result = new StreamResult(new File("C:\\Users\\FP\\Documents\\GitHub\\AccesoaDatosRep\\DOM\\mascotas2.xml"));
-        //Traslado el XML generado al fichero
-        transformer.transform(source, result);
     }
-
 }
