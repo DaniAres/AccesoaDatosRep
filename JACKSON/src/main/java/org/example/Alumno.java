@@ -1,7 +1,8 @@
 package org.example;
 
 public class Alumno {
-//poner el id
+
+    private int id;
     private String nombre;
     private int edad;
     private double notaMedia;
@@ -9,10 +10,19 @@ public class Alumno {
     public Alumno() {
     }
 
-    public Alumno(String nombre, int edad, double notaMedia) {
+    public Alumno(int id, String nombre, int edad, double notaMedia) {
+        this.id = id;
         this.nombre = nombre;
         this.edad = edad;
         this.notaMedia = notaMedia;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -42,7 +52,8 @@ public class Alumno {
     @Override
     public String toString() {
         return "Alumno{" +
-                "nombre='" + nombre + '\'' +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
                 ", edad=" + edad +
                 ", notaMedia=" + notaMedia +
                 '}';

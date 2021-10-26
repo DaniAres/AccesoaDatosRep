@@ -8,8 +8,8 @@ public class Delegado extends Alumno{
     public Delegado() {
     }
 
-    public Delegado(String nombre, int edad, double notaMedia, String ciclo, int curso) {
-        super(nombre, edad, notaMedia);
+    public Delegado(int id, String nombre, int edad, double notaMedia, String ciclo, int curso) {
+        super(id, nombre, edad, notaMedia);
         this.ciclo = ciclo;
         this.curso = curso;
     }

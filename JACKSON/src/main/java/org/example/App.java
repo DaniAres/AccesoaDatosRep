@@ -16,6 +16,7 @@ public class App
     {
         //System.out.println( "Hello World!" );
     ejercicioJACKSON();
+    ejercicioJACKSONEsc();
     }
     //ejercicioJACKSONlectura
     private static void ejercicioJACKSON(){
@@ -27,7 +28,7 @@ public class App
 
         for(Delegado m : lista){
 
-        System.out.println(m.getNombre()+"-"+m.getEdad()+"-"+m.getNotaMedia()+"-"+m.getCiclo()+"-"+m.getCurso());
+        System.out.println(m.getId()+"-"+m.getNombre()+"-"+m.getEdad()+"-"+m.getNotaMedia()+"-"+m.getCiclo()+"-"+m.getCurso());
         }
     } catch (Exception e){
             e.printStackTrace();
@@ -36,12 +37,13 @@ public class App
     private static void ejercicioJACKSONEsc(){
 
         ArrayList<Delegado> mascotasLista = new ArrayList<>();
-        mascotasLista.add(new Delegado("Paco", 20, 6.5, "DAM", 2));
-        mascotasLista.add(new Delegado("Marta", 22, 9,"DAW", 1));
+        mascotasLista.add(new Delegado(1,"Paco", 20, 6.5, "DAM", 2));
+        mascotasLista.add(new Delegado(2,"Marta", 22, 9,"DAW", 1));
 
         try{
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("C:\\Users\\FP\\Desktop\\listaAlumnosEsc.json"), mascotasLista);
 
         } catch (Exception e) {
             e.printStackTrace();
