@@ -1,0 +1,17 @@
+[
+	{
+		"nombre" : "Tadej Pogacar",
+		"kilometros" : 3484,
+		"etapas" : 21
+	},
+	{
+		"nombre" : "Egan Bernal",
+		"kilometros" : 3365,
+		"etapas" : 21
+	},
+	{
+		"nombre" : "Geraint Thomas",
+		"kilometros" : 3351
+	}
+]
+	

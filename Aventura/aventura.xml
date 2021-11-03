@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aventura titulo="Encierro">
+
+<escena codigo="1">
+<texto>Me despierto con un gran dolor de cabeza.
+
+Observo la estancia en la que estoy y veo dos puertas, una de color azul, la otra de color verde...
+</texto>
+<opcion id = "1" texto="Abro puerta verde" resultado="2"/>
+<opcion id = "2" texto="Abro puerta azul" resultado="3"/>
+<opcion id = "3" texto="Permanezco en la estancia" resultado="4"/>
+</escena>
+	
+<escena codigo="2">
+<texto>
+Al abrir la puerta veo un gran jardín, con un sendero de tierra que pasa al lado de una pequeña estatua de un conejo...
+</texto>
+<opcion id = "1" texto="Vuelvo a estancia anterior" resultado="4"/>
+<opcion id = "2" texto="Camino por el sendero" resultado="4"/>
+<opcion id = "3" texto="Observo estatua" resultado="4"/>		
+</escena>
+
+<escena codigo="3">
+<texto>
+Tras la puerta, apenas se aprecia una estancia oscura, con una gran mesa de granito gris al fondo, en la cual se divisa una silueta...
+</texto>
+<opcion id = "1" texto="Vuelvo a estancia anterior" resultado="4"/>
+<opcion id = "2" texto="Camino hacia la mesa" resultado="4"/>
+<opcion id = "3" texto="Pregunto si hay alguien" resultado="4"/>	
+</escena>
+
+<escena codigo="4">
+<texto>
+Sientes un golpe en tu cabeza y caes inconsciente al suelo...
+</texto>
+</escena>	
+	
+</aventura>

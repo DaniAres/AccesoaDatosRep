@@ -6,24 +6,24 @@ import java.util.ArrayList;
 
 public class Escena {
 
-    private String codigo;
+    private int codigo;
     private String texto;
-    private ArrayList<Opciones> opcion;
+    private ArrayList<Opcion> opciones;
 
-    public Escena(String codigo, String texto, ArrayList<Opciones> opcion) {
+    public Escena(int codigo, String texto, ArrayList<Opcion> opcion) {
         this.codigo = codigo;
         this.texto = texto;
-        this.opcion = opcion;
+        this.opciones = opcion;
     }
 
     public Escena() {
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
     @XmlAttribute(name= "codigo")
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
@@ -35,12 +35,12 @@ public class Escena {
         this.texto = texto;
     }
 
-    public ArrayList<Opciones> getOpcion() {
-        return opcion;
+    public ArrayList<Opcion> getOpciones() {
+        return opciones;
     }
-    @XmlElement
-    public void setOpcion(ArrayList<Opciones> opcion) {
-        this.opcion = opcion;
+    @XmlElement(name="opcion")
+    public void setOpciones(ArrayList<Opcion> opciones) {
+        this.opciones = opciones;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Escena {
         return "Escena{" +
                 "codigo=" + codigo +
                 ", texto='" + texto + '\'' +
-                ", opcion=" + opcion +
+                ", opcion=" + opciones +
                 '}';
     }
 }

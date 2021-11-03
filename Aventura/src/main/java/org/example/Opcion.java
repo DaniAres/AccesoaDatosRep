@@ -3,42 +3,45 @@ package org.example;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
-public class Opciones {
+public class Opcion {
 
-    private String id;
+    private int id;
     private String texto;
-    private String resultado;
+    private int resultado;
 
-    public Opciones(String id, String texto, String resultado) {
+    public Opcion(int id, String texto, int resultado) {
         this.id = id;
         this.texto = texto;
         this.resultado = resultado;
     }
 
-    public Opciones() {
+    public Opcion() {
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
+
     @XmlAttribute
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     public String getTexto() {
         return texto;
     }
+
     @XmlAttribute
     public void setTexto(String texto) {
         this.texto = texto;
     }
 
-    public String getResultado() {
+    public int getResultado() {
         return resultado;
     }
+
     @XmlAttribute
-    public void setResultado(String resultado) {
+    public void setResultado(int resultado) {
         this.resultado = resultado;
     }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ciudades>
+	<ciudad Nombre="Madrid" Poblacion="3334730">
+		<comunidad>Comunidad de Madrid</comunidad>
+	</ciudad>
+	<ciudad Nombre="Barcelona" Poblacion="1664182">
+	<comunidad>Cataluña</comunidad>
+	</ciudad>
+	<ciudad Nombre="Valencia" Poblacion="800215">
+		<comunidad>Comunidad Valenciana</comunidad>
+	</ciudad>
+	<ciudad Nombre="Sevilla">
+		<comunidad>Andalucía</comunidad>
+	</ciudad>
+</ciudades>
+	
