@@ -2,10 +2,8 @@ package org.example;
 
 import org.example.model.Marca;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Hello world!
@@ -18,12 +16,32 @@ public class App
         PersistenciaBBDD conexion = new PersistenciaBBDD();
         conexion.obtenerConexion();
 
-        CrearTablaPrueba();
+        //CrearTablaPrueba();
 
-        insertarJugadoresPruebaSinClave();
+        //insertarJugadoresPruebaSinClave();
 
-        Marca objmarca= new Marca(0, "Orbea");
-        insertarMarcaSinClave(objmarca);
+        Marca objmarca= new Marca(18, "Orbea");
+
+        //insertarMarcaSinClave(objmarca);
+
+        //insertarMarcaConClave(objmarca);
+
+        //insertarMarcaActualizar(objmarca);
+
+        //MarcaBorrar(objmarca);
+
+        //mostrarRegistrosListarMarca(objmarca);
+
+        //consultarRegistroListarMarca(7);
+
+        //verVistas(objmarca);
+
+        ArrayList<Marca> listaMarcas = new ArrayList<>();
+
+        listaMarcas.add(objmarca);
+
+        insertarListasTransacciones(listaMarcas);
+
     }
     public static void CrearTablaPrueba() {
         Connection c = null;
@@ -101,6 +119,206 @@ public class App
             }  catch (SQLException e) {
                 System.out.println("Error a cerrar la conexion");
             }
+        }
+    }
+
+    private static void insertarMarcaConClave(Marca marca) throws SQLException {
+
+        Connection c = null;
+
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+        c = conexion.obtenerConexion();
+
+        c.setAutoCommit(false);//Inicio de la trasaccion
+
+        String consulta= "INSERT INTO marcas (nombre) VALUES  (?)";
+        PreparedStatement ps = c.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, "11111111G");
+        ps.executeUpdate();
+
+        ResultSet rs= ps.getGeneratedKeys();
+        rs.next();
+        int id = rs.getInt(1);
+        System.out.println("Id generado:"+id);
+
+        c.commit();
+        ps.close();;
+    }
+
+    private static void insertarMarcaActualizar(Marca marca) {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+        try {
+            //PersistenciaBBDD.CargarDriver();
+            c = conexion.obtenerConexion();
+            String consulta3="UPDATE marcas set nombre =? where id=?;";
+            PreparedStatement ps = c.prepareStatement(consulta3);
+            ps.setString(1, marca.getNombre());
+            ps.setInt(2, marca.getId());
+            ps.executeUpdate();
+            int registrosAfectados = ps.getUpdateCount();
+            System.out.println("Se han actualizado "+registrosAfectados+" registros");
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la ejecución de la consulta");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (c!=null && !c.isClosed())
+                    c.close();
+            }  catch (SQLException e) {
+                System.out.println("Error a cerrar la conexion");
+            }
+        }
+    }
+
+    private static void MarcaBorrar(Marca marca) {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+        try {
+            //PersistenciaBBDD.CargarDriver();
+            c = conexion.obtenerConexion();
+            String consulta3="DELETE from marcas where id=?;";
+            PreparedStatement ps = c.prepareStatement(consulta3);
+            //ps.setString(1, marca.getNombre());
+            ps.setInt(1, marca.getId());
+            ps.executeUpdate();
+            int registrosAfectados = ps.getUpdateCount();
+            System.out.println("Se han actualizado "+registrosAfectados+" registros");
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la ejecución de la consulta");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (c!=null && !c.isClosed())
+                    c.close();
+            }  catch (SQLException e) {
+                System.out.println("Error a cerrar la conexion");
+            }
+        }
+    }
+
+    private static void mostrarRegistrosListarMarca(Marca marca) {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+        try {
+            //PersistenciaBBDD.CargarDriver();
+            c = conexion.obtenerConexion();
+           String consulta ="SELECT * from marcas";
+           Statement s=c.createStatement();
+           ResultSet rs=s.executeQuery(consulta);
+           while(rs.next()){
+               //Marca objeto = new Marca();
+               System.out.println("ID:" + rs.getString("ID")+" "+"Nombre:" + rs.getString("Nombre"));
+           }
+           rs.close();
+           s.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la ejecución de la consulta");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (c!=null && !c.isClosed())
+                    c.close();
+            }  catch (SQLException e) {
+                System.out.println("Error a cerrar la conexion");
+            }
+        }
+    }
+
+    private static void consultarRegistroListarMarca(int id) {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+        try {
+            //PersistenciaBBDD.CargarDriver();
+            c = conexion.obtenerConexion();
+            String consulta ="SELECT nombre from marcas where id=?;";
+            PreparedStatement ps = c.prepareStatement(consulta);
+          ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                //Marca objeto = new Marca();
+                System.out.println("Nombre:" + rs.getString("Nombre"));
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la ejecución de la consulta");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (c!=null && !c.isClosed())
+                    c.close();
+            }  catch (SQLException e) {
+                System.out.println("Error a cerrar la conexion");
+            }
+        }
+    }
+
+    private static void verVistas(Marca marca) {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+        try {
+            //PersistenciaBBDD.CargarDriver();
+            c = conexion.obtenerConexion();
+            String consulta ="SELECT * from  ventasEmpleado;";
+            Statement s = c.createStatement();
+            ResultSet rs=s.executeQuery(consulta);
+            while(rs.next()){
+                //Marca objeto = new Marca();
+                System.out.println("Nombre:" + rs.getString("Nombre"));
+            }
+            s.close();
+            s.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la ejecución de la consulta");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (c!=null && !c.isClosed())
+                    c.close();
+            }  catch (SQLException e) {
+                System.out.println("Error a cerrar la conexion");
+            }
+        }
+    }
+
+    private static void insertarListasTransacciones(ArrayList<Marca> listaMarcas) {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+        try {
+            //PersistenciaBBDD.CargarDriver();
+            c = conexion.obtenerConexion();
+            c.setAutoCommit(false);
+
+            String consulta = "INSERT INTO marcas (nombre) VALUES (?);";
+            PreparedStatement ps = c.prepareStatement(consulta);
+            for(Marca marca: listaMarcas){
+                ps.setString(1, marca.getNombre());
+                ps.addBatch();
+                System.out.println("Insertando registro " +marca.getNombre());
+
+            }
+
+            //Ejecutar y obtener cuantos se han insertado
+            int[] exitos=ps.executeBatch();
+            c.commit();
+            int registrosAfectados=0;
+
+            for(int i=0; i <listaMarcas.size(); i++){
+                registrosAfectados = registrosAfectados + exitos[i];
+            }
+            System.out.println("Se han insertado "+registrosAfectados+" registros");
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 }
