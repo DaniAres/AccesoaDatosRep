@@ -20,7 +20,7 @@ public class App
 
         //insertarJugadoresPruebaSinClave();
 
-        Marca objmarca= new Marca(18, "Orbea");
+        Marca objmarca= new Marca(24, "Lays");
 
         //insertarMarcaSinClave(objmarca);
 
@@ -40,8 +40,15 @@ public class App
 
         listaMarcas.add(objmarca);
 
-        insertarListasTransacciones(listaMarcas);
+        //insertarListasTransacciones(listaMarcas);
 
+        //actualizarListasTransacciones(objmarca);
+
+        //eliminarListasTransacciones(17);
+
+        //listarReposicionamiento(1, 2);
+
+        listarUltimasCompras();
     }
     public static void CrearTablaPrueba() {
         Connection c = null;
@@ -319,6 +326,151 @@ public class App
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+    }
+
+    private static void actualizarListasTransacciones(Marca marca) {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+
+        try {
+            c = conexion.obtenerConexion();
+            c.setAutoCommit(false);
+
+            String sql="UPDATE marcas SET ";
+            sql = sql + " nombre = ? ";
+            sql = sql + " WHERE id = ? ";
+
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setString(1, marca.getNombre());
+            ps.setInt(2, marca.getId());
+            ps.executeUpdate();
+
+            c.commit();
+
+            int registrosAfectados= ps.getUpdateCount();
+            System.out.println("Se han actualizado "+registrosAfectados+" registros");
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                if (c!=null && !c.isClosed())
+                    c.close();
+            }  catch (SQLException e) {
+                System.out.println("Error a cerrar la conexion");
+            }
+        }
+    }
+
+    private static void eliminarListasTransacciones(int id) {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+
+        try {
+            c = conexion.obtenerConexion();
+            c.setAutoCommit(false);
+
+            String sql="DELETE FROM marcas WHERE id = ?";
+
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            c.commit();
+
+            int registrosAfectados= ps.getUpdateCount();
+            System.out.println("Se han eliminado "+registrosAfectados+" registros");
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                if (c!=null && !c.isClosed())
+                    c.close();
+            }  catch (SQLException e) {
+                System.out.println("Error a cerrar la conexion");
+            }
+        }
+    }
+
+    private static void listarReposicionamiento(int secuencia, int filas) {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+        ResultSet resultado = null;
+        try {
+            c = conexion.obtenerConexion();
+            String sql="SELECT TOP (?) *" +
+                    " FROM listaClientesPorNombre " +
+                    " WHERE secuencial > ?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, filas);
+            ps.setInt(2, secuencia);
+            resultado = ps.executeQuery();
+
+            while (resultado.next()){
+                String texto = resultado.getInt("secuencial") + "-"
+                        + resultado.getInt("id") + "-"
+                        + resultado.getString("nombre") + "-"
+                        + resultado.getString("apellido") + "-"
+                        + resultado.getString("email");
+
+                System.out.println(texto);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                if (c!=null && !c.isClosed())
+                    c.close();
+            }  catch (SQLException e) {
+                System.out.println("Error a cerrar la conexion");
+            }
+        }
+    }
+
+    private static void listarUltimasCompras() {
+
+        Connection c = null;
+        PersistenciaBBDD conexion = new PersistenciaBBDD();
+
+        ResultSet resultado = null;
+
+
+        try {
+            c = conexion.obtenerConexion();
+
+            Date date = new Date(System.currentTimeMillis());
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+           String sql = "{call ultimaVentaCliente(?)}";
+
+            CallableStatement sentencia = c.prepareCall(sql);
+            sentencia.setDate(1, sqlDate);
+            if(!sentencia.execute()){
+                System.out.println("Sin resultados");
+            } else {
+                resultado = sentencia.getResultSet();
+                while(resultado.next()) {
+                    String texto= resultado.getString("nombre") + "-"
+                            + resultado.getString("apellido") + "-"
+                            + resultado.getInt("id") + "-"
+                            + resultado.getString("ciudad") + "-"
+                            + resultado.getDate("fecha");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (c!=null && !c.isClosed())
+                    c.close();
+            }  catch (SQLException e) {
+                System.out.println("Error a cerrar la conexion");
+            }
         }
     }
 }
