@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexionSQLServer {
 
     private static final String BD_SERVIDOR = "jdbc:sqlserver://localhost:1433;database=";
-    private static final String BD_NOMBRE = "Biblioteca";
+    private static final String BD_NOMBRE = "Futbol";
     private static final String BD_USUARIO = "sa";
     private static final String BD_PASSWORD = "1234";
 
@@ -15,7 +15,7 @@ public class ConexionSQLServer {
 
     //Constructor privado (patrón Singleton)
 
-    private ConexionSQLServer() {
+    private ConexionSQLServer () {
         try{
             conexion = DriverManager.getConnection(BD_SERVIDOR+BD_NOMBRE, BD_USUARIO,BD_PASSWORD);
             System.out.println("Conexión con BBDD realizada");

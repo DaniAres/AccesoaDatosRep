@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexionSQLServer {
 
     private static final String BD_SERVIDOR = "jdbc:sqlserver://localhost:1433;database=";
-    private static final String BD_NOMBRE = "Biblioteca";
+    private static final String BD_NOMBRE = "Lugar";
     private static final String BD_USUARIO = "sa";
     private static final String BD_PASSWORD = "1234";
 
