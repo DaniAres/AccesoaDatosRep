@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ActuacionDAO {
 
-    public int insertar(Actuacion objeto);
+    public int insertar(Actuacion objeto) throws Exception;
 
     public Actuacion consultar(int id);
 
