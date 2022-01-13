@@ -4,6 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Clase para la generación de conexión a una base de datos mediante JDBC.
+ * @version 1.0, 13/01/2022
+ * @author Daniel Ares Cabo (Aulanosa)
+ */
+
 public class ConexionJDBC {
 
     private static final String BD_SERVIDOR = "jdbc:sqlserver://localhost:1433;database=";

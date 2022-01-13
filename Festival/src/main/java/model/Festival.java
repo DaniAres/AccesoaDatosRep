@@ -2,6 +2,12 @@ package model;
 
 import java.sql.Timestamp;
 
+/**
+ * Clase modelo de Festival.
+ * @version 1.0, 13/01/2022
+ * @author Daniel Ares Cabo (Aulanosa)
+ */
+
 public class Festival {
 
     private int id;

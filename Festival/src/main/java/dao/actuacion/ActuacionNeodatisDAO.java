@@ -11,7 +11,20 @@ import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Operaciones CRUD en bases de datos Neodatis para almacenar objetos, es este caso de Actuacion.
+ * @version 1.0, 13/01/2022
+ * @author Daniel Ares Cabo (Aulanosa)
+ */
 public class ActuacionNeodatisDAO implements ActuacionDAO{
+
+    /**
+     * @param objeto
+     * @return
+     * @throws Exception
+     */
+
+
     @Override
     public int insertar(Actuacion objeto) throws Exception {
 

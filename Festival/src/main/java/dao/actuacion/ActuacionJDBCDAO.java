@@ -7,6 +7,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Operaciones CRUD en bases de datos JDBC para almacenar objetos, es este caso de Actuacion.
+ * @version 1.0, 13/01/2022
+ * @author Daniel Ares Cabo (Aulanosa)
+ */
+
 public class ActuacionJDBCDAO {
 
     public int insertar(Actuacion objeto){

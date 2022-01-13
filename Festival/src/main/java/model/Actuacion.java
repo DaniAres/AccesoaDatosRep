@@ -2,6 +2,13 @@ package model;
 
 import java.sql.Timestamp;
 
+/**
+ * Clase modelo de Actuacion.
+ * @version 1.0, 13/01/2022
+ * @author Daniel Ares Cabo (Aulanosa)
+ */
+
+
 public class Actuacion {
 
     private int id;

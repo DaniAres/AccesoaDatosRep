@@ -13,6 +13,12 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Clase de test de ActuacionJDBCDAO.
+ * @version 1.0, 13/01/2022
+ * @author Daniel Ares Cabo (Aulanosa)
+ */
+
 public class ActuacionDaoJDBCTest {
 
     @Test
