@@ -33,7 +33,7 @@ public class ActuacionDaoNeodatisTest {
 
     //Datos
     ActuacionDAO daoActuacion = new ActuacionNeodatisDAO();
-    //FestivalDAO daoFestival = new FestivalNeodatisDAO();
+
 
     //Almacenamos el id de pruebas
     private static int idInsertado;

@@ -139,7 +139,7 @@ public class FestivalDaoJDBCTest {
 
         FestivalJDBCDAO festivalDaoSQLServer = new FestivalJDBCDAO();
 
-        int idEliminar = 1013;
+        int idEliminar = 1022;
         festivalDaoSQLServer.eliminar(idEliminar);
 
         System.out.println("\n");

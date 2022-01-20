@@ -141,7 +141,7 @@ public class ActuacionDaoJDBCTest {
 
         ActuacionJDBCDAO actuacionDaoSQLServer = new ActuacionJDBCDAO();
 
-        int idEliminar = 1004;
+        int idEliminar = 1006;
         actuacionDaoSQLServer.eliminar(idEliminar);
 
         System.out.println("\n");

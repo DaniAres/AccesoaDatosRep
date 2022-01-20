@@ -157,7 +157,7 @@ public class ActuacionJDBCDAO {
 
         try {
             c = ConexionJDBC.obtenerConexion();
-            c.setAutoCommit(false);
+
 
             String sql = "UPDATE Actuación SET ";
             sql = sql + " Nombre = ?, ";
@@ -179,7 +179,6 @@ public class ActuacionJDBCDAO {
             ps.setInt(7, objetoActuacion.getId());
             ps.executeUpdate();
 
-            c.commit();
 
             registrosAfectados = ps.getUpdateCount();
 

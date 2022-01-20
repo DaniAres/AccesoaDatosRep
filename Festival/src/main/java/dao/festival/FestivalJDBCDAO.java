@@ -165,7 +165,7 @@ public class FestivalJDBCDAO {
 
         try {
             c = ConexionJDBC.obtenerConexion();
-            c.setAutoCommit(false);
+
 
             String sql = "UPDATE Festival SET ";
             sql = sql + " Nombre = ?, ";
@@ -189,8 +189,6 @@ public class FestivalJDBCDAO {
             ps.setInt(8, objetoFestival.getId());
             ps.executeUpdate();
 
-            c.commit();
-
             registrosAfectados = ps.getUpdateCount();
 
         } catch (SQLException throwables) {
@@ -213,7 +211,7 @@ public class FestivalJDBCDAO {
         PreparedStatement sentencia = null;
 
         try {
-            String sql = "DELETE FROM Festival WHERE id = ?";
+            String sql = "DELETE from Festival WHERE Id = ?";
             sentencia = ConexionJDBC.obtenerConexion().prepareStatement(sql);
 
             sentencia.setInt(1, id);
@@ -234,8 +232,6 @@ public class FestivalJDBCDAO {
         */
 
     }
-
-
 
 
 }
