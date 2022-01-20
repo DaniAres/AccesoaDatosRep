@@ -3,7 +3,9 @@ package org.example.actuacion;
 import connection.ConexionJDBC;
 import dao.actuacion.ActuacionJDBCDAO;
 import model.Actuacion;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -19,10 +21,12 @@ import static org.junit.Assert.assertTrue;
  * @author Daniel Ares Cabo (Aulanosa)
  */
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
 public class ActuacionDaoJDBCTest {
 
     @Test
-    public void probarConexion()
+    public void t00probarConexion()
     {
         ConexionJDBC.obtenerConexion();
 
@@ -36,7 +40,7 @@ public class ActuacionDaoJDBCTest {
 
 
     @Test
-    public void t0Insertar(){
+    public void t01Insertar(){
 
         try{
             String fecha = "10/03/2022 10:00";
@@ -71,7 +75,7 @@ public class ActuacionDaoJDBCTest {
 
 
     @Test
-    public void t1Consultar(){
+    public void t02Consultar(){
 
         ActuacionJDBCDAO actuacionDaoSQLServer = new ActuacionJDBCDAO();
 
@@ -84,7 +88,7 @@ public class ActuacionDaoJDBCTest {
 
 
     @Test
-    public void t2Listar(){
+    public void t03Listar(){
 
         ActuacionJDBCDAO actuacionDaoSQLServer = new ActuacionJDBCDAO();
         List<Actuacion> lista2 = actuacionDaoSQLServer.listar();
@@ -97,7 +101,7 @@ public class ActuacionDaoJDBCTest {
 
 
     @Test
-    public void t3Actualizar(){
+    public void t04Actualizar(){
 
         ActuacionJDBCDAO actuacionDaoSQLServer = new ActuacionJDBCDAO();
 
@@ -133,11 +137,11 @@ public class ActuacionDaoJDBCTest {
     }
 
     @Test
-    public void t4Eliminar(){
+    public void t05Eliminar(){
 
         ActuacionJDBCDAO actuacionDaoSQLServer = new ActuacionJDBCDAO();
 
-        int idEliminar = 38;
+        int idEliminar = 1004;
         actuacionDaoSQLServer.eliminar(idEliminar);
 
         System.out.println("\n");

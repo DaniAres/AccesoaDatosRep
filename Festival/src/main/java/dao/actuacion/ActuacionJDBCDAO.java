@@ -213,7 +213,7 @@ public class ActuacionJDBCDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*
+
         finally {
             try {
                 if (sentencia != null)
@@ -222,7 +222,6 @@ public class ActuacionJDBCDAO {
                 System.out.println("Error a cerrar la conexion");
             }
         }
-        */
 
 
     }
