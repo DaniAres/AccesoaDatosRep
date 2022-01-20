@@ -71,6 +71,12 @@ public class FestivalDaoNeodatisTest {
         System.out.println("Éxito al insertar");
     }
 
-
+    @Test
+    public void t99CerrarConexion()
+    {
+        //System.out.println(daoFestival.listar().toString());
+        ConexionNeodatis.cerrarConexion();
+        assertTrue( true);
+    }
 
 }

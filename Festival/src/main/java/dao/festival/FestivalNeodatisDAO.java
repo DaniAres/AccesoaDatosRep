@@ -1,7 +1,7 @@
 package dao.festival;
 
 import connection.ConexionNeodatis;
-import model.Actuacion;
+
 import model.Festival;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.Objects;
@@ -38,7 +38,12 @@ public class FestivalNeodatisDAO implements FestivalDAO{
 
     @Override
     public Festival consultar(int id) {
-        return null;
+        ODB odb = ConexionNeodatis.obtenerConexion();
+        IQuery query = new CriteriaQuery(Actuacion.class, Where.equal("id", id));
+        Objects<Actuacion> objects = odb.getObjects(query);
+        Actuacion obj = null;
+        if(objects.size()>0) { obj=objects.getFirst(); }
+        return obj;
     }
 
     @Override
