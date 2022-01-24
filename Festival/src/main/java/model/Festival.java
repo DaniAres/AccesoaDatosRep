@@ -1,6 +1,8 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Set;
 
 /**
  * Clase modelo de Festival.
@@ -8,7 +10,7 @@ import java.sql.Timestamp;
  * @author Daniel Ares Cabo (Aulanosa)
  */
 
-public class Festival {
+public class Festival implements Serializable {
 
     private int id;
     private String nombre;
@@ -18,6 +20,8 @@ public class Festival {
     private int aforo;
     private double precio;
     private int ventas;
+
+    private Set<Actuacion> actuaciones;
 
     public Festival() {
     }

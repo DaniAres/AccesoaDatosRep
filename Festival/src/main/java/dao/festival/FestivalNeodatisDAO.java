@@ -25,11 +25,14 @@ public class FestivalNeodatisDAO implements FestivalDAO{
      * @throws Exception
      */
 
+    /**
+     *  mirar insertar
+     */
     @Override
     public int insertar(Festival objeto) throws Exception {
         ODB odb = ConexionNeodatis.obtenerConexion();
 
-        IQuery query = new CriteriaQuery(Actuacion.class, Where.equal("id", objeto.getId()));
+        IQuery query = new CriteriaQuery(Festival.class, Where.equal("id", objeto.getId()));
         Objects<Festival> objects = odb.getObjects(query);
         if(objects.size()>0) { throw new Exception("Id tarea duplicado"); }
         odb.store(objeto);
@@ -39,9 +42,9 @@ public class FestivalNeodatisDAO implements FestivalDAO{
     @Override
     public Festival consultar(int id) {
         ODB odb = ConexionNeodatis.obtenerConexion();
-        IQuery query = new CriteriaQuery(Actuacion.class, Where.equal("id", id));
-        Objects<Actuacion> objects = odb.getObjects(query);
-        Actuacion obj = null;
+        IQuery query = new CriteriaQuery(Festival.class, Where.equal("id", id));
+        Objects<Festival> objects = odb.getObjects(query);
+        Festival obj = null;
         if(objects.size()>0) { obj=objects.getFirst(); }
         return obj;
     }

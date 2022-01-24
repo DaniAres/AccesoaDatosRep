@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+    <!-- Propiedades de conexion en base de datos -->
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:14333;databaseName=Festival</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password">1234</property>
+        <property name="hibernate.default_schena">dbo</property>
+
+        <!-- Escribo todas las sentencias SQL en la con sola -->
+        <property name="hibernate.show_sql">true</property>
+        <!-- Validar el esquema en la base de datos -->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <!-- Proporciona una estrategia personalizada para el alcance de la sesión actual -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- Mapeos -->
+        <mapping resource="org/example/model/Actuacion.hbm.xml"/>
+        <mapping resource="org/example/model/Festival.hbm.xml"/>
+
+    </session-factory>
+
+</hibernate-configuration>

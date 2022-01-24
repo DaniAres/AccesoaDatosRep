@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -9,7 +10,7 @@ import java.sql.Timestamp;
  */
 
 
-public class Actuacion {
+public class Actuacion implements Serializable {
 
     private int id;
     private int idFestival;
@@ -19,6 +20,8 @@ public class Actuacion {
     private String escenario;
     private Timestamp inicio;
     private Timestamp fin;
+
+    private Actuacion actuacion;
 
     public Actuacion() {
     }
