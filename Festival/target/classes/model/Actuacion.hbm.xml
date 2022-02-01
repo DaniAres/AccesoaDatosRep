@@ -4,19 +4,19 @@
         "http://www.hibernate.org/xsd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="org.example.model.Actuacion" table="Actuación">
+    <class name="model.Actuacion" table="Actuación">
         <id name="id" column="id">
             
             <generator class="native"></generator>
         </id>
-        <property name="nombre" type="String" column="Nombre"/>
-        <property name="idFestival" type="String" column="IdFestival"/>
-        <property name="descripcion" type="String" column="Descripción"/>
-        <property name="grupo" type="String" column="Grupo"/>
-        <property name="escenario" type="String" column="Escenario"/>
+        <property name="nombre" type="string" column="Nombre"/>
+        <property name="idFestival" type="integer" column="IdFestival"/>
+        <property name="descripcion" type="string" column="Descripción"/>
+        <property name="grupo" type="string" column="Grupo"/>
+        <property name="escenario" type="string" column="Escenario"/>
         <property name="inicio" type="timestamp" column="Inicio"/>
         <property name="fin" type="timestamp" column="Fin"/>
-        <many-to-one name="actuacion" column="idFestival" not-null="true"
+        <many-to-one name="festival" column="idFestival" not-null="true"
                      insert="false" update="false"/>
     </class>
 

@@ -4,20 +4,20 @@
         "http://www.hibernate.org/xsd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="org.example.model.Festival" table="Festival">
+    <class name="model.Festival" table="Festival">
         <id name="id" column="id">
             <generator class="native"></generator>
         </id>
-        <property name="nombre" type="String" column="Nombre"/>
-        <property name="descipcion" type="String" column="Descripción"/>
+        <property name="nombre" type="string" column="Nombre"/>
+        <property name="descripcion" type="string" column="Descripción"/>
         <property name="inicio" type="timestamp" column="Inicio"/>
         <property name="fin" type="timestamp" column="Fin"/>
-        <property name="aforo" type="Int" column="Aforo"/>
-        <property name="precio" type="Double" column="Precio"/>
-        <property name="ventas" type="Int" column="Ventas"/>
+        <property name="aforo" type="integer" column="Aforo"/>
+        <property name="precio" type="big_decimal" column="Precio"/>
+        <property name="ventas" type="integer" column="Ventas"/>
         <set name="actuaciones" table="Actuación" cascade="all">
             <key column="idFestival"/>
-            <one-to-many class="org.example.model.Actuacion"/>
+            <one-to-many class="model.Actuacion"/>
         </set>
 
     </class>

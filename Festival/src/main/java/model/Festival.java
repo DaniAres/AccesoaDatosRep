@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class Festival implements Serializable {
     private Timestamp inicio;
     private Timestamp fin;
     private int aforo;
-    private double precio;
+    private BigDecimal precio;
     private int ventas;
 
     private Set<Actuacion> actuaciones;
@@ -26,7 +27,7 @@ public class Festival implements Serializable {
     public Festival() {
     }
 
-    public Festival(int id, String nombre, String descripcion, Timestamp inicio, Timestamp fin, int aforo, double precio, int ventas) {
+    public Festival(int id, String nombre, String descripcion, Timestamp inicio, Timestamp fin, int aforo, BigDecimal precio, int ventas) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -85,11 +86,11 @@ public class Festival implements Serializable {
         this.aforo = aforo;
     }
 
-    public double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
@@ -99,6 +100,14 @@ public class Festival implements Serializable {
 
     public void setVentas(int ventas) {
         this.ventas = ventas;
+    }
+
+    public Set<Actuacion> getActuaciones() {
+        return actuaciones;
+    }
+
+    public void setActuaciones(Set<Actuacion> actuaciones) {
+        this.actuaciones = actuaciones;
     }
 
     @Override
@@ -112,6 +121,7 @@ public class Festival implements Serializable {
                 ", aforo=" + aforo +
                 ", precio=" + precio +
                 ", ventas=" + ventas +
+                ", actuaciones=" + actuaciones +
                 '}';
     }
 }

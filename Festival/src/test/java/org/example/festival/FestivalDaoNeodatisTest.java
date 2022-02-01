@@ -10,6 +10,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,7 +60,7 @@ public class FestivalDaoNeodatisTest {
             objeto.setInicio(fecInsertar);
             objeto.setFin(fecInsertar);
             objeto.setAforo(235);
-            objeto.setPrecio(10.99);
+            objeto.setPrecio(new BigDecimal(10.99));
             objeto.setVentas(346);
 
             idInsertado = daoFestival.insertar(objeto);

@@ -21,7 +21,7 @@ public class Actuacion implements Serializable {
     private Timestamp inicio;
     private Timestamp fin;
 
-    private Actuacion actuacion;
+    private Festival festival;
 
     public Actuacion() {
     }
@@ -101,6 +101,16 @@ public class Actuacion implements Serializable {
         this.fin = fin;
     }
 
+    public Festival getFestival() {
+        return festival;
+    }
+
+    public void setFestival(Festival festival) {
+        this.festival = festival;
+    }
+
+
+
     @Override
     public String toString() {
         return "Actuacion{" +
@@ -112,6 +122,7 @@ public class Actuacion implements Serializable {
                 ", escenario='" + escenario + '\'' +
                 ", inicio=" + inicio +
                 ", fin=" + fin +
+               // ", festival=" + festival +
                 '}';
     }
 }

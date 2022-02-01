@@ -9,6 +9,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -60,7 +61,7 @@ public class FestivalDaoJDBCTest {
             objeto.setInicio(fecInsertarInicio);
             objeto.setFin(fecInsertarFin);
             objeto.setAforo(234);
-            objeto.setPrecio(9.99);
+            objeto.setPrecio(new BigDecimal(7.99));
             objeto.setVentas(345);
 
             FestivalJDBCDAO festivalDaoSQLServer = new FestivalJDBCDAO();
@@ -124,7 +125,7 @@ public class FestivalDaoJDBCTest {
         }
         Timestamp fecInsertarFin4 = new Timestamp(parsedDate.getTime());
 
-        festivalDaoSQLServer.actualizar(new Festival(5, "España", "iuo9yseo7t", fecInsertarInicio3, fecInsertarFin4, 456, 99.99, 10));
+        festivalDaoSQLServer.actualizar(new Festival(5, "España", "iuo9yseo7t", fecInsertarInicio3, fecInsertarFin4, 456, new BigDecimal(99.99), 10));
 
         System.out.println("\n");
 

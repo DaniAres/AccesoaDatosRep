@@ -32,14 +32,14 @@ public class FestivalJDBCDAO {
             sentencia = ConexionJDBC.obtenerConexion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 
-            BigDecimal bigDecimal = new BigDecimal(objeto.getPrecio());
+            BigDecimal bigDecimal = new BigDecimal(String.valueOf(objeto.getPrecio()));
 
             sentencia.setString(1, objeto.getNombre());
             sentencia.setString(2, objeto.getDescripcion());
             sentencia.setTimestamp(3, objeto.getInicio());
             sentencia.setTimestamp(4, objeto.getFin());
             sentencia.setInt(5, objeto.getAforo());
-            sentencia.setBigDecimal(6, bigDecimal);
+            sentencia.setBigDecimal(6, objeto.getPrecio());
             sentencia.setInt(7,objeto.getVentas());
 
 
@@ -88,7 +88,7 @@ public class FestivalJDBCDAO {
                 objeto.setInicio(rs.getTimestamp("Inicio"));
                 objeto.setFin(rs.getTimestamp("Fin"));
                 objeto.setAforo(rs.getInt("Aforo"));
-                objeto.setPrecio(rs.getDouble("Precio"));
+                objeto.setPrecio(rs.getBigDecimal("Precio"));
                 objeto.setVentas(rs.getInt("Ventas"));
 
 
@@ -124,7 +124,7 @@ public class FestivalJDBCDAO {
                     objeto2.setInicio(rs.getTimestamp("Inicio"));
                     objeto2.setFin(rs.getTimestamp("Fin"));
                     objeto2.setAforo(rs.getInt("Aforo"));
-                    objeto2.setPrecio(rs.getDouble("Precio"));
+                    objeto2.setPrecio(rs.getBigDecimal("Precio"));
                     objeto2.setVentas(rs.getInt("Ventas"));
 
                     System.out.println("Nombre:" + rs.getString("Nombre"));
@@ -183,7 +183,7 @@ public class FestivalJDBCDAO {
             ps.setTimestamp(3, objetoFestival.getInicio());
             ps.setTimestamp(4, objetoFestival.getFin());
             ps.setInt(5, objetoFestival.getAforo());
-            ps.setDouble(6, objetoFestival.getPrecio());
+            ps.setBigDecimal(6, objetoFestival.getPrecio());
             ps.setInt(7, objetoFestival.getVentas());
 
             ps.setInt(8, objetoFestival.getId());
