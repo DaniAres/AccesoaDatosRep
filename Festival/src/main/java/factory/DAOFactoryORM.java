@@ -1,23 +1,20 @@
 package factory;
 
 import dao.actuacion.ActuacionDAO;
+import dao.actuacion.ActuacionORMDAO;
 import dao.festival.FestivalDAO;
+import dao.festival.FestivalORMDAO;
 
-/**
- * Clase DAOFactoryMongoDB.
- * @version 1.0, 13/01/2022
- * @author Daniel Ares Cabo (Aulanosa)
- */
+public class DAOFactoryORM extends DAOFactory {
 
-public class DAOFactoryMongoDB extends DAOFactory{
 
     @Override
     public ActuacionDAO getActuacionDAO() {
-        return null;
+        return new ActuacionORMDAO();
     }
 
     @Override
     public FestivalDAO getFestivalDAO() {
-        return null;
+        return new FestivalORMDAO();
     }
 }

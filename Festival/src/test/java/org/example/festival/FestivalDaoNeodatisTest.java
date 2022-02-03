@@ -34,7 +34,7 @@ public class FestivalDaoNeodatisTest {
     private static int idInsertado;
 
 
-    @Test
+    //@Test
     public void t00probarConexion()
     {
         ConexionNeodatis.obtenerConexion();
@@ -72,7 +72,7 @@ public class FestivalDaoNeodatisTest {
         System.out.println("Éxito al insertar");
     }
 
-    @Test
+    //@Test
     public void t99CerrarConexion()
     {
         //System.out.println(daoFestival.listar().toString());

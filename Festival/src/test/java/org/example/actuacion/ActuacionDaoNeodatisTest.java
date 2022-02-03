@@ -39,7 +39,7 @@ public class ActuacionDaoNeodatisTest {
     private static int idInsertado;
 
 
-    @Test
+    //@Test
     public void t00probarConexion()
     {
         ConexionNeodatis.obtenerConexion();
@@ -78,7 +78,7 @@ public class ActuacionDaoNeodatisTest {
         System.out.println("Éxito al insertar");
     }
 
-    @Test
+    //@Test
     public void t02Consultar() {
 
         Actuacion objeto = daoActuacion.consultar(idInsertado);
@@ -86,7 +86,7 @@ public class ActuacionDaoNeodatisTest {
         System.out.println("Éxito al consultar");
     }
 
-    @Test
+    //@Test
     public void t03Listar() {
 
         List<Actuacion> lista = daoActuacion.listar();
@@ -94,7 +94,7 @@ public class ActuacionDaoNeodatisTest {
         System.out.println("Éxito al listar");
     }
 
-    @Test
+    //@Test
     public void t04ActualizarDescripcion() {
 
         Actuacion objeto = daoActuacion.consultar(idInsertado);
@@ -108,7 +108,7 @@ public class ActuacionDaoNeodatisTest {
     }
 
 
-    @Test
+    //@Test
     public void t05Eliminar() {
 
         daoActuacion.eliminar(idInsertado);
@@ -118,7 +118,7 @@ public class ActuacionDaoNeodatisTest {
         System.out.println("Éxito al eliminar");
     }
 
-    @Test
+    //@Test
     public void t99CerrarConexion()
     {
         System.out.println(daoActuacion.listar().toString());
