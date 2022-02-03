@@ -1,7 +1,10 @@
 package factory;
 
 import dao.actuacion.ActuacionDAO;
+import dao.actuacion.ActuacionNeodatisDAO;
+
 import dao.festival.FestivalDAO;
+import dao.festival.FestivalNeodatisDAO;
 
 /**
  * Clase DAOFactoryNeodatis.
@@ -13,11 +16,11 @@ public class DAOFactoryNeodatis extends DAOFactory{
 
     @Override
     public ActuacionDAO getActuacionDAO() {
-        return null;
+        return new ActuacionNeodatisDAO();
     }
 
     @Override
     public FestivalDAO getFestivalDAO() {
-        return null;
+        return new FestivalNeodatisDAO();
     }
 }

@@ -5,6 +5,7 @@ import connection.ConexionNeodatis;
 import dao.festival.FestivalDAO;
 import dao.festival.FestivalNeodatisDAO;
 
+import model.Actuacion;
 import model.Festival;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -14,8 +15,9 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Clase de test de FestivalNeodatisDAO.
@@ -34,7 +36,7 @@ public class FestivalDaoNeodatisTest {
     private static int idInsertado;
 
 
-    //@Test
+    @Test
     public void t00probarConexion()
     {
         ConexionNeodatis.obtenerConexion();
@@ -72,7 +74,48 @@ public class FestivalDaoNeodatisTest {
         System.out.println("Éxito al insertar");
     }
 
-    //@Test
+    @Test
+    public void t02Consultar() {
+
+        Festival objeto = daoFestival.consultar(idInsertado);
+        assertEquals("Reunión Aulanosa", objeto.getNombre());
+        System.out.println("Éxito al consultar");
+    }
+
+    @Test
+    public void t03Listar() {
+
+        List<Festival> lista = daoFestival.listar();
+        assertTrue(lista.size()>0);
+        System.out.println("Éxito al listar");
+    }
+
+    @Test
+    public void t04ActualizarDescripcion() {
+
+        Festival objeto = daoFestival.consultar(idInsertado);
+        objeto.setDescripcion("Cambio de descripción");
+        daoFestival.actualizar(objeto);
+
+        Festival objetoActualizado = daoFestival.consultar(idInsertado);
+        assertEquals("Cambio de descripción", objetoActualizado.getDescripcion());
+
+        System.out.println("Éxito al actualizar la descripción");
+    }
+
+
+    @Test
+    public void t05Eliminar() {
+
+        daoFestival.eliminar(idInsertado);
+        Festival objeto= daoFestival.consultar(idInsertado);
+        assertNull(objeto);
+
+        System.out.println("Éxito al eliminar");
+    }
+
+
+    @Test
     public void t99CerrarConexion()
     {
         //System.out.println(daoFestival.listar().toString());

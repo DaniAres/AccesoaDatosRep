@@ -1,6 +1,7 @@
 package factory;
 
 import dao.actuacion.ActuacionDAO;
+import dao.actuacion.ActuacionMongoDBDAO;
 import dao.festival.FestivalDAO;
 
 /**
@@ -13,7 +14,7 @@ public class DAOFactoryMongoDB extends DAOFactory{
 
     @Override
     public ActuacionDAO getActuacionDAO() {
-        return null;
+        return new ActuacionMongoDBDAO();
     }
 
     @Override
