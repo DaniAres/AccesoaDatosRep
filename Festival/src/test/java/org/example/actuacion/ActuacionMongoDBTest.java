@@ -138,7 +138,7 @@ public class ActuacionMongoDBTest {
     @Test
     public void t99CerrarConexion(){
 
-        ConexionNeodatis.cerrarConexion();
+        ConexionMongoDB.cerrarConexion();
         assertTrue(true);
         System.out.println("Éxito al cerrar la conexion");
     }
