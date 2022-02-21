@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/xsd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="org.example.model.Futbolista" table="Futbolistas">
+        <id name="id" column="id">
+            
+            <generator class="native"></generator>
+        </id>
+        <property name="nombre" type="string" column="Nombre"/>
+        <property name="club" type="string" column="Club"/>
+        <property name="media" type="double" column="Media"/>
+        <property name="ultimo_partido" type="timestamp" column="Ultimo_Partido"/>
+
+
+
+    </class>
+
+</hibernate-mapping>
